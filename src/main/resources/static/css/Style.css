@@ -1,0 +1,13 @@
+.card{
+	margin-top: 5%;
+	margin-right: 20%;
+	margin-left: 20%;
+}
+#slide{
+	height: 700px;
+	overflow: hidden;
+	
+}
+body{
+	background-color: #4f4f4f;
+}
