@@ -1,0 +1,52 @@
+<!doctype html>
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+<section layout:fragment="corpo">
+
+	<div class="card ">
+		<div class="card-header">
+			<h1 class="card-title">Lista de casa de show</h1>
+		</div>
+		<div class="card-body">
+			<form class="form-inline" method="POST" style="margin: 20px 0">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Nome">
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+				</div>
+			</form>
+
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Evento</th>
+						<th>Capacidade</th>
+						<th>Data</th>
+						<th>Valor do Ingresso</th>
+						<th>Casa de Show</th>
+						<th>Endereço</th>
+						<th>
+							<!-- Aqui ira os botoes de deletar e editar -->
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tbody>
+
+					<tr>
+						<td colspan=8 th:if="${#lists.isEmpty(aluno) }">nenhum titulo
+							foi encontrado!</td>
+					</tr>
+
+				</tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+</html>

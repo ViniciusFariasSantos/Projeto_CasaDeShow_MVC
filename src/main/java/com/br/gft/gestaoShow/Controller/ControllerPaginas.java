@@ -1,0 +1,23 @@
+package com.br.gft.gestaoShow.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.br.gft.gestaoShow.repository.ReposiShow;
+
+@Controller
+@RequestMapping("/home")
+public class ControllerPaginas {
+	@Autowired
+	public ReposiShow repositorio;
+	
+	
+	
+	@RequestMapping
+	public String inicio() {
+
+		return "PaginaInicial";
+	}
+	
+}

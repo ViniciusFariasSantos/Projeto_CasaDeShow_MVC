@@ -9,5 +9,15 @@
 	
 }
 body{
-	background-color: #4f4f4f;
+	background-color: #828282;
+}
+
+.marketing{
+ 		margin-top: 5%;
+}
+h2{
+	color:white;
+}
+p{
+	color:white;
 }
