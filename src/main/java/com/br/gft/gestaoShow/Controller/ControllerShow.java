@@ -7,7 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -52,9 +52,9 @@ public class ControllerShow {
 
 	
 	@RequestMapping
-	public ModelAndView Pesquisa() {
+	public ModelAndView Pesquisa(@RequestParam(defaultValue="") String nomeCasaShow) {
 		
-		Iterable<Show> novoPesquisa = repositorio.findAll();
+		Iterable<Show> novoPesquisa = repositorio.findByNomeCasaShowContaining(nomeCasaShow);
 
 		ModelAndView mv = new ModelAndView("PesquisaCasaDeShow");
 		
@@ -68,7 +68,7 @@ public class ControllerShow {
 	public ModelAndView edicao(@PathVariable("codigo") Show show) {
 		// Estou indo para meu Model Titulo e pegando meus dados e passando para o
 		// usuario
-		ModelAndView mv = new ModelAndView("redirect:/cadastro/CasaDeShow");
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(show);
 		return mv;
 	}

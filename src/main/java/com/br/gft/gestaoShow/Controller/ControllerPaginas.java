@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.br.gft.gestaoShow.repository.ReposiShow;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/home")    
 public class ControllerPaginas {
 	@Autowired
 	public ReposiShow repositorio;
@@ -20,4 +20,10 @@ public class ControllerPaginas {
 		return "PaginaInicial";
 	}
 	
+	@RequestMapping("/login")
+	public String login() {
+		
+		return "Login";
+		
+	}
 }

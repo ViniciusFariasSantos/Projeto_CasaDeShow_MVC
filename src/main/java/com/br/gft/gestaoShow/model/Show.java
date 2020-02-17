@@ -4,20 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.validation.constraints.NotEmpty;
+import javax.persistence.ManyToOne;
+
+import javax.validation.constraints.NotEmpty;
+
+
+
+
+		
 
 @Entity(name = "CADASTRO_CASA_DE_SHOW")
 public class Show {
 	// Declaração das variaveis 
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	public Long codigo;
+	private Long codigo;
 	
-//	@NotEmpty(message = "Error: O nome da casa de show é obrigatório")
-	public String nomeCasaShow;
+	@NotEmpty(message = "Error: O Nome da Casa é obrigatório")
+	private String nomeCasaShow;
 	
-	//@NotEmpty(message = "Error: O endereço é obrigatório")
-	public String local;
+	@NotEmpty(message = "Error: O endereço é obrigatório")
+	private String local;
+	
+
 	
 	
 	//getters e Setters 

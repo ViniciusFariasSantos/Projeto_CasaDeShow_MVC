@@ -12,7 +12,21 @@
 	<div class="card">
 		<h5 class="card-header">Cadastro casa de Show</h5>
 		<div class="card-body">
-
+	<form  method="GET" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-4">
+					<div class="input-group">
+						<input class="form-control" placeholder="Buscar..." autofocus="autofocus" name="nomeCasaShow">
+						<span class="input-group-btn" >
+							<button type="submit" class="btn btn-primary">
+								Pesquisa
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</form>
+		
 		<table class="table table-striped">
 				<thead class="thead-dark">
 					<tr>
@@ -37,7 +51,7 @@
 						</td>					
 					</tr>
 					<tr>
-						<td colspan=6 th:if="${#lists.isEmpty(aluno) }">nenhum titulo
+						<td colspan=6 th:if="${#lists.isEmpty(showPesquisa) }">nenhum titulo
 							foi encontrado!</td>
 					</tr>
 

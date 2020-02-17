@@ -3,21 +3,58 @@ package com.br.gft.gestaoShow.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
+
+
 
 
 @Entity(name="CADASTRO_EVENTO")
 public class Evento {
 	@Id
-	public Long codigo;
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	private Long codigo;
 	
-	public String evento;
+	@NotEmpty(message = "Error : O Evento é obrigatório")
+	private String evento;
 	
-	public String capacidade;
+	@NotEmpty(message = "Error : O Capacidade é obrigatório")
+	private String capacidade;
 	
-	public Date data;
+	@NotNull(message ="Error: Data  é obrigatório")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Date data;
 	
-	public Number valorIngresso;
+	@NotNull
+	private Number valorIngresso;
+
+	
+
+	
+	
+	//Gatters and Satters 	
+	
+	public StatuShow getStatus() {
+		return status;
+	}
+	public void setStatus(StatuShow status) {
+		this.status = status;
+	}
+	@Enumerated(EnumType.STRING)
+	public StatuShow status;
 	
 	
 	

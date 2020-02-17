@@ -20,7 +20,7 @@
 				<label for="idade">Evento :</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="idade"
-						name="evento" placeholder="Nome da Casa de Show">
+						name="evento" placeholder="Nome do Show">
 				</div>
 			</div>
 
@@ -28,24 +28,43 @@
 				<label for="curso">Capacidade  :</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="curso"
-						name="capacidade" placeholder="Localização da casa de Show">
+						name="capacidade" placeholder="Capacidade total de pessoa ">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="curso">Data  :</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="curso"
-						name="data" placeholder="Localização da casa de Show">
+						name="data" placeholder="DD/MM/AAAA">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="curso">Valor do Ingresso  :</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="curso"
-						name="valorIngresso" placeholder="Localização da casa de Show">
+						name="valorIngresso" placeholder="R$ 0000,00">
 				</div>
 			</div>
 			
+			<div class="form-group">
+					<label for="status">Status</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="status" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+				</div>
+			<div class="form-group">
+					<label for="status">Status</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="status" name="status">
+							<option th:each="status : ${todosStatusShow}"
+								th:value="${status}" th:text="${status.descricao}">
+						</select>
+					</div>
+				</div>
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
 
 		</div>
