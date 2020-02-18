@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.br.gft.gestaoShow.model.Show;
 import com.br.gft.gestaoShow.model.StatuShow;
 import com.br.gft.gestaoShow.repository.ReposiShow;
 
@@ -31,11 +32,16 @@ public class ControllerEvento {
 		return"PesquisaEvento";
 	}
 	
-	@ModelAttribute("todosStatusShow")
-	public List<StatuShow> todosStatusShow() {
-		// Esta lista é para meu Pedente e recebido, validando eles dois
-		return Arrays.asList(StatuShow.values());
-
-	}
 	
+
+	
+	@ModelAttribute("statusEvento")
+	public List<Show> casas(){
+		
+		return repositorio.findAll();
+	}
+
+	
+	
+			
 }

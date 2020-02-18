@@ -1,12 +1,16 @@
 package com.br.gft.gestaoShow.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import javax.validation.constraints.NotEmpty;
+
+
 
 
 
@@ -20,26 +24,30 @@ public class Show {
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@NotEmpty(message = "Error: O Nome da Casa é obrigatório")
-	private String nomeCasaShow;
+	
+	@ManyToOne
+	@JoinColumn(name="nomeCasaShow")
+	private Evento nomeCasaShow = new Evento();
 	
 	@NotEmpty(message = "Error: O endereço é obrigatório")
 	private String local;
-	
+		
 
 	
-	
 	//getters e Setters 
+	
+	
+
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getNomeCasaShow() {
+	public Evento getNomeCasaShow() {
 		return nomeCasaShow;
 	}
-	public void setNomeCasaShow(String nomeCasaShow) {
+	public void setNomeCasaShow(Evento nomeCasaShow) {
 		this.nomeCasaShow = nomeCasaShow;
 	}
 	public String getLocal() {
@@ -48,6 +56,9 @@ public class Show {
 	public void setLocal(String local) {
 		this.local = local;
 	}
+	
+	
+
 	
 	//hasCode e equals do Código para assim gerar um id automático. 
 	@Override

@@ -1,6 +1,8 @@
 package com.br.gft.gestaoShow.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,12 +10,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -41,15 +46,23 @@ public class Evento {
 	@NotNull
 	private Number valorIngresso;
 
-	
+	@OneToMany(mappedBy="nomeCasaShow")
+	List<Show> show = new ArrayList <Show>();
 
 	
 	
 	//Gatters and Satters 	
 	
+	public List<Show> getShow() {
+		return show;
+	}
+	public void setShow(List<Show> show) {
+		this.show = show;
+	}
 	public StatuShow getStatus() {
 		return status;
 	}
+	
 	public void setStatus(StatuShow status) {
 		this.status = status;
 	}
