@@ -1,25 +1,25 @@
 package com.br.gft.gestaoShow.model;
 
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
+
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 
 
@@ -33,64 +33,56 @@ public class Evento {
 	private Long codigo;
 	
 	@NotEmpty(message = "Error : O Evento é obrigatório")
-	private String evento;
+	private String nomeEvento;
 	
-	@NotEmpty(message = "Error : O Capacidade é obrigatório")
-	private String capacidade;
+	@NotNull(message = "Error : A capacidade obrigatório")
+	private Number capacidade;
 	
 	@NotNull(message ="Error: Data  é obrigatório")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@NotNull
+	@NotNull(message = "Error : O valor do Ingresso é obrigatório")
 	private Number valorIngresso;
 
-	@OneToMany(mappedBy="nomeCasaShow")
-	List<Show> show = new ArrayList <Show>();
 
+	@ManyToOne
+	@JoinColumn(name="nomeCasaShow")
+	private Show nomeCasaShow;
+	
+	
 	
 	
 	//Gatters and Satters 	
+
 	
-	public List<Show> getShow() {
-		return show;
+
+
+	
+	
+	
+	public String getNomeEvento() {
+		return nomeEvento;
 	}
-	public void setShow(List<Show> show) {
-		this.show = show;
+	public void setNomeEvento(String nomeEvento) {
+		this.nomeEvento = nomeEvento;
 	}
-	public StatuShow getStatus() {
-		return status;
-	}
-	
-	public void setStatus(StatuShow status) {
-		this.status = status;
-	}
-	@Enumerated(EnumType.STRING)
-	public StatuShow status;
-	
-	
-	
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getCapacidade() {
+	
+	public Number getCapacidade() {
 		return capacidade;
 	}
-	public void setCapacidade(String capacidade) {
+	public void setCapacidade(Number capacidade) {
 		this.capacidade = capacidade;
 	}
 	public Date getData() {
 		return data;
-	}
-	public String getEvento() {
-		return evento;
-	}
-	public void setEvento(String evento) {
-		this.evento = evento;
 	}
 	public void setData(Date data) {
 		this.data = data;
@@ -101,9 +93,14 @@ public class Evento {
 	public void setValorIngresso(Number valorIngresso) {
 		this.valorIngresso = valorIngresso;
 	}
-
+	public Show getNomeCasaShow() {
+		return nomeCasaShow;
+	}
+	public void setNomeCasaShow(Show nomeCasaShow) {
+		this.nomeCasaShow = nomeCasaShow;
+	}
 	
-	
+	//hashcode Equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;

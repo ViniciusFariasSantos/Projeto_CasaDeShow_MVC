@@ -1,5 +1,8 @@
 package com.br.gft.gestaoShow.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -7,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 
@@ -24,31 +27,35 @@ public class Show {
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Long codigo;
 	
-	
-	@ManyToOne
-	@JoinColumn(name="nomeCasaShow")
-	private Evento nomeCasaShow = new Evento();
+
+	@OneToMany(mappedBy="nomeCasaShow")
+	List<Evento> evento = new ArrayList <Evento>();
+
 	
 	@NotEmpty(message = "Error: O endereço é obrigatório")
 	private String local;
 		
-
+	@NotEmpty(message = "Error: O Nome da casa de show é obrigatório")
+	private String nomeCasaShow;
+	
+	
 	
 	//getters e Setters 
 	
 	
-
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public Evento getNomeCasaShow() {
-		return nomeCasaShow;
+	public List<Evento> getEvento() {
+		return evento;
 	}
-	public void setNomeCasaShow(Evento nomeCasaShow) {
-		this.nomeCasaShow = nomeCasaShow;
+	public void setEvento(List<Evento> evento) {
+		this.evento = evento;
 	}
 	public String getLocal() {
 		return local;
@@ -56,10 +63,12 @@ public class Show {
 	public void setLocal(String local) {
 		this.local = local;
 	}
-	
-	
-
-	
+	public String getNomeCasaShow() {
+		return nomeCasaShow;
+	}
+	public void setNomeCasaShow(String nomeCasaShow) {
+		this.nomeCasaShow = nomeCasaShow;
+	}
 	//hasCode e equals do Código para assim gerar um id automático. 
 	@Override
 	public int hashCode() {
