@@ -25,11 +25,17 @@ public class ControllerShow {
 	public ReposiShow repositorio;
 	
 	@RequestMapping("/CasaDeShow" )
-	public ModelAndView cadastrarShow(Show show) {
+	public ModelAndView cadastrarShow(@RequestParam(defaultValue="") String nomeCasaShow, Show show) {
+		Iterable<Show> novoPesquisa = repositorio.findByNomeCasaShowContaining(nomeCasaShow);
+
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+
+		mv.addObject("showPesquisa", novoPesquisa);
 		mv.addObject(new Show());
 		return mv;
 	}
+	
+
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String salvar(@Validated Show show, Errors errors, RedirectAttributes attributes) {
@@ -51,17 +57,7 @@ public class ControllerShow {
 	
 
 	
-	@RequestMapping
-	public ModelAndView Pesquisa(@RequestParam(defaultValue="") String nomeCasaShow) {
-		
-		Iterable<Show> novoPesquisa = repositorio.findByNomeCasaShowContaining(nomeCasaShow);
 
-		ModelAndView mv = new ModelAndView("PesquisaCasaDeShow");
-		
-		mv.addObject("showPesquisa", novoPesquisa);
-		return mv;
-
-	}
 	
 	
 	@RequestMapping(value="{codigo}")

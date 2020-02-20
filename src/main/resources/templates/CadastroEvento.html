@@ -70,7 +70,7 @@
 				<div class="form-group">
 					<label for="status">Status</label>
 					<div class="col-sm-4">
-						<select class="form-control" id="status">
+						<select class="form-control" id="status" name="status">
 							<option th:each="statusEstilo :${StatusEstilo}"
 								th:value="${statusEstilo}" th:text="${statusEstilo.descricao}" />
 
@@ -88,6 +88,63 @@
 				</div>
 				<button type="submit" class="btn btn-primary">Cadastrar</button>
 			</form>
+		</div>
+	</div>
+		<div class="card ">
+		<div class="card-header">
+			<h1 class="card-title">Lista de casa de show</h1>
+		</div>
+		<div class="card-body">
+			<form class="form-inline" method="POST" style="margin: 20px 0">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Nome">
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+				</div>
+			</form>
+
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Evento</th>
+						<th>Capacidade</th>
+						<th>Data</th>
+						<th>Valor do Ingresso</th>
+						<th>Estilo Musical</th>
+						<th>Casa de Show</th>
+						<th>Editar/Deletar</th>
+						<th>
+							<!-- Aqui ira os botoes de deletar e editar -->
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tbody>
+					<tr th:each="evento : ${eventoPesquisa}">
+						<td th:text="${evento.codigo }"></td>
+						<td th:text="${evento.nomeEvento}"></td>
+						<td th:text="${evento.capacidade}"></td>
+						<td th:text="${evento.data}"></td>
+						<td th:text="|R$ ${{evento.valorIngresso}} |"></td>
+						<td th:text="${evento.status.descricao}"></td>
+						
+						<td>
+							<a type="submit" class="btn btn-primary" th:href="@{/cadastroEve/{codigo}(codigo=${evento.codigo})}">Editar</a>
+							<a type="submit" class="btn btn-danger" th:href="@{/cadastroEve/excluir/{codigo}(codigo=${evento.codigo})}">Deletar</a>
+						</td>
+						
+						
+						
+					</tr>	
+					<tr>
+						<td colspan=8 th:if="${#lists.isEmpty(aluno) }">nenhum titulo
+							foi encontrado!</td>
+					</tr>
+
+				</tbody>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </section>

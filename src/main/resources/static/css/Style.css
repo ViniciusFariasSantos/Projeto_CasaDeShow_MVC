@@ -24,3 +24,21 @@ p{
 .text-center{
 margin-top: 20%;	
 }
+#rodape{
+	margin-top:5%;
+      clear:      both;
+    border-top: 1px solid #606060;
+    font-family: arial;
+      }
+
+#rodape p{
+        text-align: center;
+        font-family: arial;
+     }
+
+#rodape a{
+        text-align: center;
+        color:  white;
+     }
+      
+  

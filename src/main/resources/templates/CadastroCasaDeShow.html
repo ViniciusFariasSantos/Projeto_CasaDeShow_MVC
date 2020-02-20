@@ -57,6 +57,61 @@
 
 	</div>
 	
+	<!-- Pesquisa casas de show  -->
+	<div class="card">
+		<h5 class="card-header">Cadastro casa de Show</h5>
+		<div class="card-body">
+	<form  method="GET" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-4">
+					<div class="input-group">
+						<input class="form-control" placeholder="Buscar..." autofocus="autofocus" name="nomeCasaShow">
+						<span class="input-group-btn" >
+							<button type="submit" class="btn btn-primary">
+								Pesquisa
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</form>
+		
+		<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Nome</th>
+						<th>Endereço</th>
+						<th>
+							editar/deletar
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tbody>
+				<!-- o showPequisa esta sendo passado para o metodo pesquisaar -->
+					<tr th:each="newShow : ${showPesquisa}">
+						<td th:text="${newShow.codigo}"></td>
+						<td th:text="${newShow.nomeCasaShow}"></td>
+						<td th:text="${newShow.local}"></td>	
+						<td>
+						<a type="submit" class="btn btn-primary" th:href="@{/cadastro/{codigo}(codigo=${newShow.codigo})}">Editar</a>
+						<a type="submit" class="btn btn-danger" th:href="@{/cadastro/excluir/{codigo}(codigo=${newShow.codigo})}">Deletar</a>
+						</td>					
+					</tr>
+					<tr>
+						<td colspan=6 th:if="${#lists.isEmpty(showPesquisa) }">nenhum titulo
+							foi encontrado!</td>
+					</tr>
+
+				</tbody>
+				</tbody>
+			</table>
+
+	</div>
+	</div>
+	
+	
 	
 	
 </section>

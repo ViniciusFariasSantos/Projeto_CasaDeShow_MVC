@@ -6,9 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,9 +35,14 @@ public class ControllerEvento<StatusShow> {
 	@Autowired
 	public ReposiEvento reposiEvento;
 	
+	
+	//Pagina de Pesquisa do Evento, listando todos os eventos e colocando na view principal  
 	@RequestMapping("/cadastroEvento")
-	public ModelAndView cadastrarEvento() {
+	public ModelAndView cadastrarEvento(@RequestParam(defaultValue="") String nomeEvento, Evento evento) {
+		Iterable<Evento> novoPesquisa = this.reposiEvento.findByNomeEventoContaining( nomeEvento);
+	
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject("eventoPesquisa", novoPesquisa);
 		mv.addObject(new Evento());
 		
 		return mv;
@@ -44,7 +52,7 @@ public class ControllerEvento<StatusShow> {
 	
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String salvar(Evento evento, Errors errors, RedirectAttributes attributes ) {
+	public String salvar(@Validated Evento evento, Errors errors, RedirectAttributes attributes ) {
 		if(errors.hasErrors()) {
 			
 			return CADASTRO_VIEW;
@@ -59,14 +67,26 @@ public class ControllerEvento<StatusShow> {
 	
 	
 	
-	//Pagina de Pesquisa do Evento, listando todos os eventos 
-	@RequestMapping("/pesquisa")
-	public String pesquisarEvento() {
-		
-		return"PesquisaEvento";
+	
+	@RequestMapping(value="{codigo}")
+	public ModelAndView edicao(@PathVariable("codigo") Evento evento) {
+		// Estou indo para meu Model Titulo e pegando meus dados e passando para o
+		// usuario
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject(evento);
+		return mv;
 	}
 
-	
+	@RequestMapping(path="/excluir/{codigo}")
+	public String excluir(@PathVariable ("codigo")Evento evento) {
+		
+		
+		// Estou indo para meu Model Titulo e excluido os dados
+		
+		
+		this.reposiEvento.delete(evento);
+		return "redirect:/cadastroEve/cadastroEvento";
+	}
 	
 	
 	//buscando do banco de Daods e adicionando no Select da Pagina Html 
