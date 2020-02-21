@@ -25,7 +25,7 @@ import com.br.gft.gestaoShow.repository.ReposiShow;
 
 @Controller
 @RequestMapping("/cadastroEve" )      
-public class ControllerEvento<StatusShow> {
+public class ControllerEvento{
 	
 	public static final String CADASTRO_VIEW = "CadastroEvento";
 	

@@ -77,7 +77,7 @@ public class ControllerShow {
 		
 		
 		this.repositorio.delete(show);
-		return "redirect:/cadastro";
+		return "redirect:/cadastro/CasaDeShow";
 	}
 	
 

@@ -31,7 +31,7 @@
 					</div>
 				</div>
 
-				<INPUT type="hidden" th:field="*{codigo}" />
+				<INPUT type="hidden" th:field="*{codigoShow}" />
 			
 				<div class="form-group">
 
@@ -91,16 +91,15 @@
 				<tbody>
 				<!-- o showPequisa esta sendo passado para o metodo pesquisaar -->
 					<tr th:each="newShow : ${showPesquisa}">
-						<td th:text="${newShow.codigo}"></td>
+						<td th:text="${newShow.codigoShow}"></td>
 						<td th:text="${newShow.nomeCasaShow}"></td>
 						<td th:text="${newShow.local}"></td>	
 						<td>
-						<a type="submit" class="btn btn-primary" th:href="@{/cadastro/{codigo}(codigo=${newShow.codigo})}">Editar</a>
-						<a type="submit" class="btn btn-danger" th:href="@{/cadastro/excluir/{codigo}(codigo=${newShow.codigo})}">Deletar</a>
+						<a type="submit" class="btn btn-primary" th:href="@{/cadastro/{codigo}(codigo=${newShow.codigoShow})}">Editar</a>
+						<a type="submit" class="btn btn-danger" th:href="@{/cadastro/excluir/{codigo}(codigo=${newShow.codigoShow})}">Deletar</a>
 						</td>					
-					</tr>
-					<tr>
-						<td colspan=6 th:if="${#lists.isEmpty(showPesquisa) }">nenhum titulo
+					
+						<td colspan=6 th:if="${#lists.isEmpty(newShow) }">nenhum titulo
 							foi encontrado!</td>
 					</tr>
 

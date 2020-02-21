@@ -1,8 +1,9 @@
 package com.br.gft.gestaoShow.model;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -25,11 +26,11 @@ public class Show {
 	// Declaração das variaveis 
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private Long codigo;
+	private Long codigoShow;
 	
 
-	@OneToMany(mappedBy="nomeCasaShow")
-	List<Evento> evento = new ArrayList <Evento>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="nomeCasaShow")
+	List<Evento> evento ;
 
 	
 	@NotEmpty(message = "Error: O endereço é obrigatório")
@@ -45,11 +46,12 @@ public class Show {
 	
 	
 	
-	public Long getCodigo() {
-		return codigo;
+
+	public Long getCodigoShow() {
+		return codigoShow;
 	}
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setCodigoShow(Long codigoShow) {
+		this.codigoShow = codigoShow;
 	}
 	public List<Evento> getEvento() {
 		return evento;
@@ -74,7 +76,7 @@ public class Show {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((codigoShow == null) ? 0 : codigoShow.hashCode());
 		return result;
 	}
 	@Override
@@ -86,15 +88,14 @@ public class Show {
 		if (getClass() != obj.getClass())
 			return false;
 		Show other = (Show) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (codigoShow == null) {
+			if (other.codigoShow != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!codigoShow.equals(other.codigoShow))
 			return false;
 		return true;
 	}
-	
-	
+
 	
 	
 	

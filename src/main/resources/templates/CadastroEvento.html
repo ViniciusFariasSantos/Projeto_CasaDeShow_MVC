@@ -12,13 +12,13 @@
 <section layout:fragment="corpo">
 
 	<div class="card">
-		<h5 class="card-header">Cadastro casa de Show</h5>
+		<h5 class="card-header">Cadastro Evento</h5>
 		<div class="card-body">
 			<form method="POST" action="/cadastroEve" th:object="${evento}">
 			<div class="alert alert-success "
 					th:if="${!#strings.isEmpty(mensagem) }">
 
-					<span th:text="${mensagem}">Casa de Show salvo com sucesso!</span>
+					<span th:text="${mensagem}">Evento salvo com sucesso!</span>
 
 				</div>
 
@@ -30,7 +30,7 @@
 					</div>
 				</div>
 
-				<INPUT type="hidden" th:field="*{codigo}" />
+				<INPUT type="hidden" th:field="*{codigoEvento}" />
 				<div class="form-group">
 
 					<label for="idade">Evento :</label>
@@ -80,9 +80,9 @@
 				<div class="form-group">
 					<label for="status">Status</label>
 					<div class="col-sm-4">
-						<select class="form-control" id="status" name="status">
+						<select class="form-control" id="status" name="nomeCasaShow">
 							<option th:each="status : ${statusEvento}"
-								th:value="${status.codigo}" th:text="${status.nomeCasaShow}" />
+								th:value="${status.codigoShow}" th:text="${status.nomeCasaShow}" />
 						</select>
 					</div>
 				</div>
@@ -92,12 +92,12 @@
 	</div>
 		<div class="card ">
 		<div class="card-header">
-			<h1 class="card-title">Lista de casa de show</h1>
+			<h1 class="card-title">Lista de Evento</h1>
 		</div>
 		<div class="card-body">
 			<form class="form-inline" method="POST" style="margin: 20px 0">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Nome">
+					<input type="text" class="form-control" placeholder="Buscar..." autofocus="autofocus" name="nomeEvento">
 					<button type="submit" class="btn btn-primary">Adicionar</button>
 				</div>
 			</form>
@@ -122,24 +122,24 @@
 				<tbody>
 				<tbody>
 					<tr th:each="evento : ${eventoPesquisa}">
-						<td th:text="${evento.codigo }"></td>
+						<td th:text="${evento.codigoEvento }"></td>
 						<td th:text="${evento.nomeEvento}"></td>
 						<td th:text="${evento.capacidade}"></td>
 						<td th:text="${evento.data}"></td>
 						<td th:text="|R$ ${{evento.valorIngresso}} |"></td>
 						<td th:text="${evento.status.descricao}"></td>
+						<td th:text="${evento.status.codigoShow}"></td>
 						
 						<td>
-							<a type="submit" class="btn btn-primary" th:href="@{/cadastroEve/{codigo}(codigo=${evento.codigo})}">Editar</a>
-							<a type="submit" class="btn btn-danger" th:href="@{/cadastroEve/excluir/{codigo}(codigo=${evento.codigo})}">Deletar</a>
+							<a type="submit" class="btn btn-primary" th:href="@{/cadastroEve/{codigo}(codigo=${evento.codigoEvento})}">Editar</a>
+							<a type="submit" class="btn btn-danger" th:href="@{/cadastroEve/excluir/{codigo}(codigo=${evento.codigoEvento})}">Deletar</a>
 						</td>
 						
 						
 						
-					</tr>	
-					<tr>
-						<td colspan=8 th:if="${#lists.isEmpty(aluno) }">nenhum titulo
-							foi encontrado!</td>
+					
+						<td colspan=8 th:if="${#lists.isEmpty(evento) }"><span>nenhum titulo
+							foi encontrado!</span></td>
 					</tr>
 
 				</tbody>

@@ -33,14 +33,13 @@ import org.springframework.format.annotation.NumberFormat;
 public class Evento {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private Long codigo;
+	private Long codigoEvento;
 	
 	@NotEmpty(message = "Error : O Evento é obrigatório")
 	private String nomeEvento;
 	
 	@NotNull(message = "Error : A capacidade obrigatório")
-	@DecimalMin(value = "0" , message = "Error: Valor não pode ser menor que 0")
-	@DecimalMax(value = "9999999", message = "Error: Valor não pode ser maior que 9.999.999" )
+	
 	private BigDecimal capacidade;
 	
 	@NotNull(message ="Error: Data  é obrigatório")
@@ -59,7 +58,7 @@ public class Evento {
 	private StatuShow status;
 
 	@ManyToOne
-	@JoinColumn(name="nomeCasaShow")
+	@JoinColumn(name="nomeCasaShow", nullable=false)
 	private Show nomeCasaShow;
 	
 	
@@ -73,6 +72,12 @@ public class Evento {
 	
 	
 	
+	public Long getCodigoEvento() {
+		return codigoEvento;
+	}
+	public void setCodigoEvento(Long codigoEvento) {
+		this.codigoEvento = codigoEvento;
+	}
 	public StatuShow getStatus() {
 		return status;
 	}
@@ -85,12 +90,7 @@ public class Evento {
 	public void setNomeEvento(String nomeEvento) {
 		this.nomeEvento = nomeEvento;
 	}
-	public Long getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
+
 	
 	public BigDecimal getCapacidade() {
 		return capacidade;
@@ -116,14 +116,11 @@ public class Evento {
 	public void setNomeCasaShow(Show nomeCasaShow) {
 		this.nomeCasaShow = nomeCasaShow;
 	}
-	
-	
-	//hashcode Equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((capacidade == null) ? 0 : capacidade.hashCode());
 		return result;
 	}
 	@Override
@@ -135,12 +132,16 @@ public class Evento {
 		if (getClass() != obj.getClass())
 			return false;
 		Evento other = (Evento) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		if (capacidade == null) {
+			if (other.capacidade != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!capacidade.equals(other.capacidade))
 			return false;
 		return true;
 	}
+	
+	
+	//hashcode Equals
+	
 	
 }
