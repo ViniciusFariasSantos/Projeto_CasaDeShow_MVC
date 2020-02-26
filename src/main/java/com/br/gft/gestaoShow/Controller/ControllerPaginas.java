@@ -33,10 +33,5 @@ public class ControllerPaginas {
 		return mv;
 	}
 	
-	@RequestMapping("/login")
-	public String login() {
-		
-		return "Login";
-		
-	}
+
 }

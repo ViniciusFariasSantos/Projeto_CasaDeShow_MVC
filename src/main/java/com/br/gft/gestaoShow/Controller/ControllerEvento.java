@@ -39,8 +39,13 @@ public class ControllerEvento{
 	//Pagina de Pesquisa do Evento, listando todos os eventos e colocando na view principal  
 	@RequestMapping("/cadastroEvento")
 	public ModelAndView cadastrarEvento(@RequestParam(defaultValue="") String nomeEvento, Evento evento) {
+		if(casas().isEmpty()) {
+			ModelAndView mv = new ModelAndView("PaginaDeErro");
+			return mv;
+		}
 		Iterable<Evento> novoPesquisa = this.reposiEvento.findByNomeEventoContaining( nomeEvento);
 	
+		
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject("eventoPesquisa", novoPesquisa);
 		mv.addObject(new Evento());
