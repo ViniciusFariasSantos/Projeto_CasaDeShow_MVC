@@ -87,7 +87,7 @@
 						</th>
 					</tr>
 				</thead>
-				<tbody>
+				
 				<tbody>
 				<!-- o showPequisa esta sendo passado para o metodo pesquisaar -->
 					<tr th:each="newShow : ${showPesquisa}">
@@ -97,13 +97,14 @@
 						<td>
 						<a type="submit" class="btn btn-primary" th:href="@{/cadastro/{codigo}(codigo=${newShow.codigoShow})}">Editar</a>
 						<a type="submit" class="btn btn-danger" th:href="@{/cadastro/excluir/{codigo}(codigo=${newShow.codigoShow})}">Deletar</a>
-						</td>					
+											
 					
-						<td colspan=6 th:if="${#lists.isEmpty(newShow) }">nenhum titulo
+					<tr>
+						<td colspan=6 th:if="${#lists.isEmpty(showPesquisa) }">nenhum titulo
 							foi encontrado!</td>
 					</tr>
 
-				</tbody>
+				
 				</tbody>
 			</table>
 

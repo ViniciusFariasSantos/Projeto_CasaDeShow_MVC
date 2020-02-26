@@ -61,7 +61,7 @@ public class Evento {
 	@JoinColumn(name="nomeCasaShow", nullable=false)
 	private Show nomeCasaShow;
 	
-	
+	private String foto;
 	
 	
 	//Gatters and Satters 	
@@ -72,6 +72,12 @@ public class Evento {
 	
 	
 	
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 	public Long getCodigoEvento() {
 		return codigoEvento;
 	}

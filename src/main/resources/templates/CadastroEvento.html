@@ -9,13 +9,14 @@
 <title>Cadasrtro Eventos</title>
 </head>
 
+
 <section layout:fragment="corpo">
 
 	<div class="card">
 		<h5 class="card-header">Cadastro Evento</h5>
 		<div class="card-body">
 			<form method="POST" action="/cadastroEve" th:object="${evento}">
-			<div class="alert alert-success "
+				<div class="alert alert-success "
 					th:if="${!#strings.isEmpty(mensagem) }">
 
 					<span th:text="${mensagem}">Evento salvo com sucesso!</span>
@@ -77,10 +78,20 @@
 						</select>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="curso">Foto/url :</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="curso"
+							th:field="*{foto}" placeholder="Coloco o link da imagem que você quer aqui "
+							th:classappend="${#fields.hasErrors('foto')} ? is-invalid">
+					</div>
+				</div>
+				
 				<div class="form-group">
 					<label for="status">Status</label>
 					<div class="col-sm-4">
-						<select class="form-control" id="status" name="nomeCasaShow">
+						<select class="form-control" id="status" th:field="*{nomeCasaShow}">
 							<option th:each="status : ${statusEvento}"
 								th:value="${status.codigoShow}" th:text="${status.nomeCasaShow}" />
 						</select>
@@ -90,14 +101,15 @@
 			</form>
 		</div>
 	</div>
-		<div class="card ">
+	<div class="card ">
 		<div class="card-header">
 			<h1 class="card-title">Lista de Evento</h1>
 		</div>
 		<div class="card-body">
 			<form class="form-inline" method="POST" style="margin: 20px 0">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Buscar..." autofocus="autofocus" name="nomeEvento">
+					<input type="text" class="form-control" placeholder="Buscar..."
+						autofocus="autofocus" name="nomeEvento">
 					<button type="submit" class="btn btn-primary">Adicionar</button>
 				</div>
 			</form>
@@ -114,9 +126,7 @@
 						<th>Estilo Musical</th>
 						<th>Casa de Show</th>
 						<th>Editar/Deletar</th>
-						<th>
-							<!-- Aqui ira os botoes de deletar e editar -->
-						</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -128,24 +138,32 @@
 						<td th:text="${evento.data}"></td>
 						<td th:text="|R$ ${{evento.valorIngresso}} |"></td>
 						<td th:text="${evento.status.descricao}"></td>
-						<td th:text="${evento.status.codigoShow}"></td>
-						
-						<td>
-							<a type="submit" class="btn btn-primary" th:href="@{/cadastroEve/{codigo}(codigo=${evento.codigoEvento})}">Editar</a>
-							<a type="submit" class="btn btn-danger" th:href="@{/cadastroEve/excluir/{codigo}(codigo=${evento.codigoEvento})}">Deletar</a>
+						<td th:text="${evento.nomeCasaShow.nomeCasaShow}"></td>
+
+						<td><a type="submit" class="btn btn-primary"
+							th:href="@{/cadastroEve/{codigo}(codigo=${evento.codigoEvento})}">Editar</a>
+							<a type="submit" class="btn btn-danger"
+							th:href="@{/cadastroEve/excluir/{codigo}(codigo=${evento.codigoEvento})}">Deletar</a>
 						</td>
-						
-						
-						
-					
-						<td colspan=8 th:if="${#lists.isEmpty(evento) }"><span>nenhum titulo
-							foi encontrado!</span></td>
+
+
+
+					</tr>
+					<tr>
+						<td colspan=8 th:if="${#lists.isEmpty(eventoPesquisa) }"><span>nenhum
+								evento foi encontrado!</span></td>
 					</tr>
 
 				</tbody>
 				</tbody>
 			</table>
 		</div>
+
 	</div>
+
 </section>
+
 </html>
+
+
+

@@ -1,0 +1,108 @@
+<!doctype html>
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+
+</head>
+<section layout:fragment="corpo">
+
+	<div class="card">
+		<h5 class="card-header">Cadastro casa de Show</h5>
+		<div class="card-body">
+
+			<form th:object="${show}" action="/cadastro" method="POST">
+				<!-- th:if está criando uma codição boolean para validar uma mensagem. -->
+
+				<div class="alert alert-success "
+					th:if="${!#strings.isEmpty(mensagem) }">
+
+					<span th:text="${mensagem}">Casa de Show salvo com sucesso!</span>
+
+				</div>
+
+
+
+				<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+					<div th:each="detailedError : ${#fields.detailedErrors()}">
+						<span th:text="${detailedError.message}"></span>
+					</div>
+				</div>
+
+				<INPUT type="hidden" th:field="*{codigoShow}" />
+
+				<div class="form-group">
+
+					<label for="nomeCliente">Nome :</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="nomeCliente"
+							th:field="*{nomeCliente}" placeholder="Nome..."
+							th:classappend="${#fields.hasErrors('nomeCliente')} ? is-invalid">
+					</div>
+				</div>
+				<div class="form-group">
+
+					<label for="sobreNome">Sobrenome:</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="sobreNome"
+							th:field="*{sobreNome}" placeholder="Sobre nome..."
+							th:classappend="${#fields.hasErrors('sobreNome')} ? is-invalid">
+					</div>
+				</div>
+	<div class="form-group">
+
+					<label for="idade">Data de Nascimento:</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="idade"
+							th:field="*{idade}" placeholder="Nome da Casa de Show"
+							th:classappend="${#fields.hasErrors('idade')} ? is-invalid">
+					</div>
+				</div>
+					<div class="form-group">
+
+					<label for="cpf">cpf :</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="cpf"
+							th:field="*{cpf}" placeholder="000.000.000-00"
+							th:classappend="${#fields.hasErrors('cpf')} ? is-invalid">
+					</div>
+				</div>
+				
+
+				<div class="form-group">
+					<label for="local">Endereço :</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="localCliente"
+							th:field="*{endereço}" placeholder="Localização da casa de Show"
+							th:classappend="${#fields.hasErrors('endereço')} ? is-invalid">
+					</div>
+				</div>
+					<div class="form-group">
+
+					<label for="nomeCasaShow">Email :</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="email"
+							th:field="*{email}" placeholder="ex: gft@email.com"
+							th:classappend="${#fields.hasErrors('email')} ? is-invalid">
+					</div>
+				</div>
+					<div class="form-group">
+
+					<label for="nomeCasaShow">senha :</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id=""
+							th:field="*{senha}" placeholder="Senha"
+							th:classappend="${#fields.hasErrors('senha')} ? is-invalid">
+					</div>
+				</div>
+				
+				
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</form>
+		</div>
+
+	</div>
+</section>
+</html>

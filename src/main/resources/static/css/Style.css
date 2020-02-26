@@ -1,11 +1,11 @@
 .card{
-	margin-top: 5%;
-	margin-right: 10%;
-	margin-left: 10%;
+	margin-top: 10%;
+	margin-right: 2%;
+	margin-left: 2%;
 	padding-bottom: 5%;
 }
 #slide{
-	height: 700px;
+	height: 500px;
 	overflow: hidden;
 	
 }
