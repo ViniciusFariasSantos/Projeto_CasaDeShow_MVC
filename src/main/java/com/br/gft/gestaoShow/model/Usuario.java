@@ -1,9 +1,14 @@
 package com.br.gft.gestaoShow.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,11 +16,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 public class Usuario implements UserDetails{
 	@Id
+	
 	private String login;
+	
+	
 	
 	private String nomeCompleto;
 	
+	
+	
 	private String senha;
+	
 
 	public String getLogin() {
 		return login;

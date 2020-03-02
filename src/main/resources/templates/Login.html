@@ -25,20 +25,20 @@ margin-left: 35%;
 <section layout:fragment="corpo">
 
 	<div class="text-center">
-		<form class="form-signin">
+		<form class="form-signin" action="/login" method="post">
 			<img class="mb-4" src="/img/S.png" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
 
 			<div class="col-sm-4">
-				<label for="inputEmail" class="sr-only">Endereço de email</label> <input
-					type="email" id="inputEmail" class="form-control"
-					placeholder="Seu email" required autofocus>
+				<label for="text" class="sr-only">Endereço de email</label> <input
+					type="text" id="text" class="form-control"
+					placeholder="Seu email"  name="username"  required autofocus>
 			</div>
 
 			<div class="col-sm-4">
 				<label for="inputPassword" class="sr-only">Senha</label> <input
 					type="password" id="inputPassword" class="form-control"
-					placeholder="Senha" required>
+					placeholder="Senha" name="password" required>
 			</div>
 
 			<div class="checkbox mb-3">
@@ -46,7 +46,7 @@ margin-left: 35%;
 				<label> <input type="checkbox" value="remember-me">
 						Lembrar de mim </label>
 			</div>
-
+				<a href="/cadastroCliente">cadastrar</a>
 
 			<div class="col-sm-4">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
