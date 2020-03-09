@@ -39,7 +39,6 @@ public class ControllerShow {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String salvar(@Validated Show show, Errors errors, RedirectAttributes attributes) {
-	
 		if (errors.hasErrors()) {
 
 			return CADASTRO_VIEW;
@@ -50,6 +49,7 @@ public class ControllerShow {
 		
 		attributes.addFlashAttribute("mensagem", "Casa de Show Salvo com sucesso!");
 		
+	
 		return "redirect:/cadastro/CasaDeShow";
 	}
 
