@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.br.gft.gestaoShow.services.EventoService;
 
 
 
+
 @RestController
 @RequestMapping("/eventos")
 public class EventoResources {
@@ -29,7 +31,7 @@ public class EventoResources {
 	
 	
 	@Autowired
-	private EventoService livrosService;
+	private EventoService eventoService;
 	
 	
 	
@@ -38,7 +40,7 @@ public class EventoResources {
 	public  ResponseEntity <List<Evento>> listar() {
 		
 			
-		return  ResponseEntity.status(HttpStatus.OK).body(livrosService.listar());
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listar());
 	}
 	
 	
@@ -48,7 +50,7 @@ public class EventoResources {
 	public ResponseEntity<Void>  salvar(@Valid @RequestBody Evento evento) {
 		
 		
-		evento = livrosService.salvar(evento);
+		evento = eventoService.salvar(evento);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(evento.getCodigoEvento()).toUri();
@@ -63,7 +65,7 @@ public class EventoResources {
 	public ResponseEntity<?> buscar(@PathVariable("id") Long codigoEvento) {
 		
 		
-		Optional<Evento> evento   = livrosService.buscar(codigoEvento);
+		Optional<Evento> evento   = eventoService.buscar(codigoEvento);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(evento);
 		
@@ -78,7 +80,7 @@ public class EventoResources {
 		
 		
 			
-		this.livrosService.deletar(codigoEvento);
+		this.eventoService.deletar(codigoEvento);
 		return ResponseEntity.noContent().build();
 		
 	}
@@ -90,12 +92,93 @@ public class EventoResources {
 		evento.setCodigoEvento(codigoEvento);
 		
 		
-		livrosService.atualizar(evento);
+		eventoService.atualizar(evento);
 		return ResponseEntity.noContent().build();
 		
 	}
 	
 	
 	
+	//----------------Nome do Evento Crescente e decrescente -----------------------------------
+	@GetMapping("/nome/asc")
+	public ResponseEntity<List<Evento>> listarNomeEventoAsc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarNomeEventoCres());
+	}
 	
+	@GetMapping("/nome/desc")
+	public ResponseEntity<List<Evento>> listarNomeEventoDesc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarNomeEventoDecres());
+	}
+	
+	
+	
+	
+	
+	//----------------Capacidade Crescente e decrescente ----------------------------------------
+
+	@GetMapping("/capacidade/asc")
+	public ResponseEntity<List<Evento>> listarCapacidadeAsc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarCapacidadeCres());
+	}
+	
+	@GetMapping("/capacidade/desc")
+	public ResponseEntity<List<Evento>> listarCapacidadeDesc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarCapacidadeDecres());
+	}
+	
+	
+	
+	//----------------Data Crescente e decrescente -----------------------------------------------	
+	@GetMapping("/data/asc")
+	public ResponseEntity<List<Evento>> listarDataAsc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarDataCres());
+	}
+	
+	@GetMapping("/data/desc")
+	public ResponseEntity<List<Evento>> listarDataDesc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarNomeEventoDecres());
+	}
+	
+	
+	
+	
+	
+	
+	//----------------Preço do Evento Crescente e decrescente ------------------------------------
+	
+	@GetMapping("/preco/asc")
+	public ResponseEntity<List<Evento>> listarPrecoAsc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarPrecoCres());
+	}
+	
+	@GetMapping("/preco/desc")
+	public ResponseEntity<List<Evento>> listarPrecoDesc(){
+		
+		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarPrecoDecres());
+	}
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

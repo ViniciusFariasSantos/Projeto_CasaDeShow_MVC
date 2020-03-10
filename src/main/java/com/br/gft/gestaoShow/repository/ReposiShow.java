@@ -7,7 +7,8 @@ import com.br.gft.gestaoShow.model.*;
 public interface ReposiShow  extends JpaRepository<Show, Long>{
 	
 	Iterable<Show> findByNomeCasaShowContaining(String nomeCasaShow);
-
+	
+	Show findByNomeCasaShow(String nomeCasaShow);
 	
 	
 }
