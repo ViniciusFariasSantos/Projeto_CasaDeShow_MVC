@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.gft.gestaoShow.model.Evento;
 import com.br.gft.gestaoShow.repository.ReposiEvento;
-import com.br.gft.gestaoShow.services.exceptions.LivroNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.EventoNaoEncontradoException;
 
 @Service
 public class EventoService {
@@ -31,7 +31,7 @@ public class EventoService {
 		Optional<Evento> livro = eventoRepository.findById(codigoEvento);
 		if (livro.isEmpty()) {
 
-			throw new LivroNaoEncontradoException("O Evento não pode ser encontrado.");
+			throw new EventoNaoEncontradoException("O Evento não pode ser encontrado.");
 		}
 		return livro;
 	}
@@ -51,7 +51,7 @@ public class EventoService {
 			this.eventoRepository.deleteById(codigoEvento);
 		} catch (EmptyResultDataAccessException e) {
 
-			throw new LivroNaoEncontradoException("O Evento não pode ser encontrado .");
+			throw new EventoNaoEncontradoException("O Evento não pode ser encontrado .");
 		}
 
 	}

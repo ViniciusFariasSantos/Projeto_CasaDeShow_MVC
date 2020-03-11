@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.br.gft.gestaoShow.model.DetalhesErro;
-import com.br.gft.gestaoShow.services.exceptions.AutorExistenteException;
-import com.br.gft.gestaoShow.services.exceptions.AutorNaoEncontradoException;
-import com.br.gft.gestaoShow.services.exceptions.LivroNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.CasaShowExistenteException;
+import com.br.gft.gestaoShow.services.exceptions.CasaShowNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.EventoNaoEncontradoException;
 
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
 	
-	@ExceptionHandler(LivroNaoEncontradoException.class)
-	public ResponseEntity <DetalhesErro> handlerLivroNaoEncontradoException(LivroNaoEncontradoException e, HttpServletRequest request){
+	@ExceptionHandler(EventoNaoEncontradoException.class)
+	public ResponseEntity <DetalhesErro> handlerLivroNaoEncontradoException(EventoNaoEncontradoException e, HttpServletRequest request){
 		
 		DetalhesErro erro = new DetalhesErro();
 		
@@ -35,8 +35,8 @@ public class ResourceExceptionHandler {
 	}
 	
 	
-	@ExceptionHandler(AutorExistenteException.class)
-	public ResponseEntity <DetalhesErro> handlerAutorExistenteException(AutorExistenteException e, HttpServletRequest request){
+	@ExceptionHandler(CasaShowExistenteException.class)
+	public ResponseEntity <DetalhesErro> handlerAutorExistenteException(CasaShowExistenteException e, HttpServletRequest request){
 		
 		DetalhesErro erro = new DetalhesErro();
 		
@@ -51,8 +51,8 @@ public class ResourceExceptionHandler {
 	}
 	
 	
-	@ExceptionHandler(AutorNaoEncontradoException.class)
-	public ResponseEntity <DetalhesErro> handlerAutorNaoEncontradoException(AutorNaoEncontradoException e, HttpServletRequest request){
+	@ExceptionHandler(CasaShowNaoEncontradoException.class)
+	public ResponseEntity <DetalhesErro> handlerAutorNaoEncontradoException(CasaShowNaoEncontradoException e, HttpServletRequest request){
 		
 		DetalhesErro erro = new DetalhesErro();
 		

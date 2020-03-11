@@ -26,7 +26,7 @@ public class IndexController {
 	
 	
 	
-	@RequestMapping({"/", "/home "})
+	@RequestMapping( "/home ")
 	public String index() {
 		
 		return "PaginaInicial";

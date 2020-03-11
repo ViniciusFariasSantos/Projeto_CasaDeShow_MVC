@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.0.BUILD-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gestaoShow</groupId>
 	<artifactId>GestaoDeShow</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>GestaoDeShow</name>
-	<description>Demo project for Spring Boot. project gestão casa de show</description>
+	<description>Demo project for Spring Boot. project gestão casa de show
+	</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<spring-fox.version>2.9.2</spring-fox.version>
 	</properties>
 
 	<dependencies>
@@ -32,43 +35,56 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-		<!-- Spring Security
+
+		<!-- Spring Security <dependency> <groupId>org.springframework.boot</groupId> 
+			<artifactId>spring-boot-starter-security</artifactId> </dependency> -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.6</version>
+			<scope>compile</scope>
 		</dependency>
-		 -->
-       <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.6</version>
-            <scope>compile</scope>
-        </dependency>
-        
-          <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.0.2.Final</version>
-            <scope>compile</scope>
-        </dependency>
-		
+
 		<dependency>
-		<!-- baixando os diretorios para o layout funcionar junto com as paginas html  -->
-    		<groupId>nz.net.ultraq.thymeleaf</groupId>
-   			 	<artifactId>thymeleaf-layout-dialect</artifactId>
-    		
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.2.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<!-- baixando os diretorios para o layout funcionar junto com as paginas 
+				html -->
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Dependecia do swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${spring-fox.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${spring-fox.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

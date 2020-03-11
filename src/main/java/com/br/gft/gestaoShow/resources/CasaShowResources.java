@@ -23,7 +23,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.br.gft.gestaoShow.model.Show;
 import com.br.gft.gestaoShow.services.CasaShowService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "Casa")
 @RestController
 @RequestMapping("/show")
 public class CasaShowResources {
@@ -31,7 +34,7 @@ public class CasaShowResources {
 	@Autowired
 	private CasaShowService casaShowService;
 	
-	
+	@ApiOperation("Listar as casas de Show")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Show>> listar(){
 		
@@ -40,7 +43,7 @@ public class CasaShowResources {
 		
 	}
 	
-	
+	@ApiOperation("Salvar as casas de Show")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> salvar(@Valid  @RequestBody Show show){
 		
@@ -54,6 +57,8 @@ public class CasaShowResources {
 	
 	
 	//---------------------Buascando por ID---------------------------------------------------------
+	
+	@ApiOperation("Buscar as casas de Show")
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public ResponseEntity<Optional<Show>> buscar (@PathVariable("id") Long id){
 		
@@ -61,12 +66,7 @@ public class CasaShowResources {
 		
 	}
 
-	
-	
-	
-	
-	
-	
+	@ApiOperation("Deletar as casas de Show")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deletar (@PathVariable("id") Long codigoShow) {
 		
@@ -78,7 +78,7 @@ public class CasaShowResources {
 	}
 	
 	
-	
+	@ApiOperation("atualizar as casas de Show")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar (@RequestBody Show show, @PathVariable("id") Long codigoShow) {
 		show.setCodigoShow(codigoShow);
@@ -91,12 +91,14 @@ public class CasaShowResources {
 	
 	
 	//----------------Nome do Evento Crescente e decrescente -----------------------------------
+		@ApiOperation("Listar as casas de Show em ordem crescente")	
 		@GetMapping("/nome/asc")
 		public ResponseEntity<List<Show>> listarNomeEventoAsc(){
 			
 			return  ResponseEntity.status(HttpStatus.OK).body(casaShowService.listarNomeCasaShowCres());
 		}
 		
+		@ApiOperation("Listar as casas de Show em ordem Decrescente")
 		@GetMapping("/nome/desc")
 		public ResponseEntity<List<Show>> listarNomeEventoDesc(){
 			
@@ -104,10 +106,10 @@ public class CasaShowResources {
 		}
 	
 		//--------------------Buscando por nome-----------------------------------------------------
-		
-		@RequestMapping(value = "/nome/{nomeCasa}",method = RequestMethod.GET)
-		public ResponseEntity<Show> buscarNome (@PathVariable("nomeCasaShow") String nomeCasaShow){
-			Show casa = casaShowService.buscarNome(nomeCasaShow);
+		@ApiOperation("buscar por nome as casas de Show ")
+		@RequestMapping(value = "/nome/{nomeCasaShow}",method = RequestMethod.GET)
+		public ResponseEntity<List<Show>> buscarNome (@PathVariable("nomeCasaShow") String nomeCasaShow){
+			List<Show> casa = casaShowService.buscarNome(nomeCasaShow);
 			return ResponseEntity.status(HttpStatus.OK).body(casa);
 			
 		}

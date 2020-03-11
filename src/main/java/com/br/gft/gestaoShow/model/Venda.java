@@ -3,24 +3,19 @@ package com.br.gft.gestaoShow.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Size;
-
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
-public class Historico {
+public class Venda {
 	
 	// Declaração das variaveis
 	@Id
@@ -28,9 +23,7 @@ public class Historico {
 	private Long id;
 	
 	@JsonInclude(Include.NON_NULL)
-	@Size(max = 1500, message ="O resumo não pode conter mas de 1500 caracteres.")
-	@JsonProperty("comentario")
-	private String texto;
+	private String total;
 	
 	
 	
@@ -40,25 +33,21 @@ public class Historico {
 	
 	
 	
-	@ManyToOne(fetch =FetchType.LAZY)
-	@JoinColumn(name =  "EVENTO_ID")
-	@JsonIgnore
-	private Evento evento;	
 	
 	
-	@ManyToOne(fetch =FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name =  "USUARIO_ID")
-	@JsonIgnore
 	private Usuario usuario;
 	
 	
 	
-	public Evento getEvento() {
-		return evento;
+	
+	public String getTotal() {
+		return total;
 	}
 
-	public void setEvento(Evento evento) {
-		this.evento = evento;
+	public void setTotal(String total) {
+		this.total = total;
 	}
 
 	public Usuario getUsuario() {
@@ -78,13 +67,7 @@ public class Historico {
 		this.id = id;
 	}
 
-	public String getTexto() {
-		return texto;
-	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
 
 
 	public Date getData() {

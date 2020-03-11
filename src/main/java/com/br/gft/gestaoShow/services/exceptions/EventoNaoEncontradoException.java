@@ -1,6 +1,6 @@
 package com.br.gft.gestaoShow.services.exceptions;
 
-public class LivroNaoEncontradoException extends RuntimeException{
+public class EventoNaoEncontradoException extends RuntimeException{
 	
 	
 	
@@ -13,11 +13,11 @@ public class LivroNaoEncontradoException extends RuntimeException{
 	/**
 	 * 
 	 */
-	public  LivroNaoEncontradoException(String mensagem) {
+	public  EventoNaoEncontradoException(String mensagem) {
 		super(mensagem);
 	}
 	
-	public  LivroNaoEncontradoException(String mensagem, Throwable causa) {
+	public  EventoNaoEncontradoException(String mensagem, Throwable causa) {
 		super(mensagem, causa);
 	}
 	

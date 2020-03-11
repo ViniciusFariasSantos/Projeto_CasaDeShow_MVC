@@ -19,29 +19,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.gft.gestaoShow.model.Historico;
-import com.br.gft.gestaoShow.services.HistoricoService;
+import com.br.gft.gestaoShow.model.Venda;
+import com.br.gft.gestaoShow.services.VendaService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
+@Api(tags = "Venda")
 @RestController
-@RequestMapping("/historico")
-public class HistoricoResources {
+@RequestMapping("/venda")
+public class VendaResources {
 	
 	@Autowired
-	private HistoricoService historicoService;
+	private VendaService historicoService;
 	
-	
+	@ApiOperation("Listar as vendas")
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Historico>> listar(){
+	public ResponseEntity<Iterable<Venda>> listar(){
 		
-		Iterable<Historico> historico = historicoService.listar();
+		Iterable<Venda> historico = historicoService.listar();
 		return ResponseEntity.status(HttpStatus.OK).body(historico);
 		
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> salvar(@Valid  @RequestBody Historico historico){
+	public ResponseEntity<Void> salvar(@Valid  @RequestBody Venda historico){
 		
 		historico = historicoService.salvar(historico);
 		
@@ -49,8 +53,9 @@ public class HistoricoResources {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation("Listar as vendas pelo Id")
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
-	public ResponseEntity<Optional<Historico>> buscar (@PathVariable("id") Long id){
+	public ResponseEntity<Optional<Venda>> buscar (@PathVariable("id") Long id){
 		
 		return ResponseEntity.status(HttpStatus.OK).body(historicoService.buscar(id));
 		

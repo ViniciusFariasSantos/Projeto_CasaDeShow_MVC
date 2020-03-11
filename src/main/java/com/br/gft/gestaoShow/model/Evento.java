@@ -3,7 +3,6 @@ package com.br.gft.gestaoShow.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
@@ -24,10 +22,6 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 
 
@@ -66,36 +60,12 @@ public class Evento {
 	private Show nomeCasaShow;
 	
 	
-	
-	
-	@JsonInclude(Include.NON_EMPTY)
-	@OneToMany(mappedBy = "evento")
-	@JsonIgnore
-	List<Historico> historico;
-	
-	
 	private String foto;
 	
 	
 	
 	
 	//Gatters and Satters 	
-
-	
-
-
-	
-	
-	
-
-	public List<Historico> getHistorico() {
-		return historico;
-	}
-
-	public void setHistorico(List<Historico> historico) {
-		this.historico = historico;
-	}
-
 	public String getFoto() {
 		return foto;
 	}

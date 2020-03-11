@@ -1,6 +1,6 @@
 package com.br.gft.gestaoShow.services.exceptions;
 
-public class AutorNaoEncontradoException extends RuntimeException{
+public class CasaShowExistenteException extends RuntimeException{
 	
 	
 	
@@ -13,11 +13,11 @@ public class AutorNaoEncontradoException extends RuntimeException{
 	/**
 	 * 
 	 */
-	public  AutorNaoEncontradoException(String mensagem) {
+	public  CasaShowExistenteException(String mensagem) {
 		super(mensagem);
 	}
 	
-	public  AutorNaoEncontradoException(String mensagem, Throwable causa) {
+	public  CasaShowExistenteException(String mensagem, Throwable causa) {
 		super(mensagem, causa);
 	}
 	

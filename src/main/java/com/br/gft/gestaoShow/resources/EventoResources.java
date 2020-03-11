@@ -21,9 +21,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.br.gft.gestaoShow.model.Evento;
 import com.br.gft.gestaoShow.services.EventoService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
 
+@Api(tags = "Evento")
 @RestController
 @RequestMapping("/eventos")
 public class EventoResources {
@@ -35,7 +38,7 @@ public class EventoResources {
 	
 	
 	
-	
+	@ApiOperation("Listar os eventos")
 	@RequestMapping(method = RequestMethod.GET)
 	public  ResponseEntity <List<Evento>> listar() {
 		
@@ -45,7 +48,7 @@ public class EventoResources {
 	
 	
 	
-	
+	@ApiOperation("Salvar os eventos")
 	@RequestMapping( method = RequestMethod.POST)
 	public ResponseEntity<Void>  salvar(@Valid @RequestBody Evento evento) {
 		
@@ -60,7 +63,7 @@ public class EventoResources {
 	
 	
 	
-	
+	@ApiOperation("Buscar os eventos pelo id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable("id") Long codigoEvento) {
 		
@@ -74,7 +77,7 @@ public class EventoResources {
 	
 	
 	
-	
+	@ApiOperation("Deletar os eventos pelo id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deletar (@PathVariable("id") Long codigoEvento) {
 		
@@ -86,7 +89,7 @@ public class EventoResources {
 	}
 	
 	
-	
+	@ApiOperation("Atualizar os eventos pelo id")
 	@RequestMapping(value = "/{id}" ,method = RequestMethod.PUT)
 	public ResponseEntity<Void> atualizar (@RequestBody Evento evento, @PathVariable("id") Long codigoEvento) {
 		evento.setCodigoEvento(codigoEvento);
@@ -100,12 +103,14 @@ public class EventoResources {
 	
 	
 	//----------------Nome do Evento Crescente e decrescente -----------------------------------
+	@ApiOperation("Listar nome dos eventos pela ordem crescente")
 	@GetMapping("/nome/asc")
 	public ResponseEntity<List<Evento>> listarNomeEventoAsc(){
 		
 		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarNomeEventoCres());
 	}
 	
+	@ApiOperation("Listar nome dos eventos pela ordem decrescente")
 	@GetMapping("/nome/desc")
 	public ResponseEntity<List<Evento>> listarNomeEventoDesc(){
 		
@@ -117,13 +122,14 @@ public class EventoResources {
 	
 	
 	//----------------Capacidade Crescente e decrescente ----------------------------------------
-
+	@ApiOperation("Listar Capacidade pela ordem crescente")
 	@GetMapping("/capacidade/asc")
 	public ResponseEntity<List<Evento>> listarCapacidadeAsc(){
 		
 		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarCapacidadeCres());
 	}
 	
+	@ApiOperation("Listar Capacidade pela ordem decrescente")
 	@GetMapping("/capacidade/desc")
 	public ResponseEntity<List<Evento>> listarCapacidadeDesc(){
 		
@@ -133,12 +139,15 @@ public class EventoResources {
 	
 	
 	//----------------Data Crescente e decrescente -----------------------------------------------	
+	
+	@ApiOperation("Listar data pela ordem crescente")
 	@GetMapping("/data/asc")
 	public ResponseEntity<List<Evento>> listarDataAsc(){
 		
 		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarDataCres());
 	}
 	
+	@ApiOperation("Listar data pela ordem decrescente")
 	@GetMapping("/data/desc")
 	public ResponseEntity<List<Evento>> listarDataDesc(){
 		
@@ -151,13 +160,14 @@ public class EventoResources {
 	
 	
 	//----------------Preço do Evento Crescente e decrescente ------------------------------------
-	
+	@ApiOperation("Listar preço pela ordem crescente")
 	@GetMapping("/preco/asc")
 	public ResponseEntity<List<Evento>> listarPrecoAsc(){
 		
 		return  ResponseEntity.status(HttpStatus.OK).body(eventoService.listarPrecoCres());
 	}
 	
+	@ApiOperation("Listar preço pela ordem decrescente")
 	@GetMapping("/preco/desc")
 	public ResponseEntity<List<Evento>> listarPrecoDesc(){
 		

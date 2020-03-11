@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.br.gft.gestaoShow.model.Show;
 import com.br.gft.gestaoShow.repository.ReposiShow;
-import com.br.gft.gestaoShow.services.exceptions.AutorExistenteException;
-import com.br.gft.gestaoShow.services.exceptions.AutorNaoEncontradoException;
-import com.br.gft.gestaoShow.services.exceptions.LivroNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.CasaShowExistenteException;
+import com.br.gft.gestaoShow.services.exceptions.CasaShowNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.EventoNaoEncontradoException;
 
 @Service
 public class CasaShowService {
@@ -51,7 +51,7 @@ public class CasaShowService {
 
 			if (a != null) {
 
-				throw new AutorExistenteException("O casa de show já existe");
+				throw new CasaShowExistenteException("O casa de show já existe");
 			}
 
 		}
@@ -69,7 +69,7 @@ public class CasaShowService {
 		Optional<Show> autor = showRepository.findById(id);
 
 		if (autor.isEmpty()) {
-			throw new AutorNaoEncontradoException("A Casa de show não existente");
+			throw new CasaShowNaoEncontradoException("A Casa de show não existente");
 		}
 		return autor;
 	}
@@ -81,12 +81,12 @@ public class CasaShowService {
 	
 	
 	//------------- Metodo Buscar casa pelo nome-------------------------
-	public Show buscarNome(String nomeCasaShow) {
+	public List<Show> buscarNome(String nomeCasaShow) {
 
-		Show casa = showRepository.findByNomeCasaShow(nomeCasaShow);
+		List<Show> casa = showRepository.findByNomeCasaShowContaining(nomeCasaShow);
 
-		if (casa == null) {
-			throw new AutorNaoEncontradoException("A Casa de show não existente");
+		if (casa.isEmpty()) {
+			throw new CasaShowNaoEncontradoException("A Casa de show não existente");
 		}
 		return casa;
 	}
@@ -104,7 +104,7 @@ public class CasaShowService {
 			this.showRepository.deleteById(codigoEvento);
 		} catch (EmptyResultDataAccessException e) {
 
-			throw new LivroNaoEncontradoException("O Evento não pode ser encontrado .");
+			throw new EventoNaoEncontradoException("O Evento não pode ser encontrado .");
 		}
 
 	}  
