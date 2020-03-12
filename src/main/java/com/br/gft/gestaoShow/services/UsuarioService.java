@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.br.gft.gestaoShow.model.Usuario;
 import com.br.gft.gestaoShow.repository.ReposiUsuario;
-import com.br.gft.gestaoShow.services.exceptions.CasaShowExistenteException;
-import com.br.gft.gestaoShow.services.exceptions.CasaShowNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.UsuarioExistenteException;
+import com.br.gft.gestaoShow.services.exceptions.UsuarioNaoEncontradoException;
 
 
 @Service
@@ -19,10 +19,14 @@ public class UsuarioService {
 	@Autowired
 	private ReposiUsuario usuarioRepository; 
 	
+	
+	//----------------- Listar o nome do usario----------------
 	public Iterable<Usuario> listar (){
 		return  usuarioRepository.findAll(); 
 	}
 	
+	
+	//-----------------Buscar o id do usuario ----------------
 	public Usuario salvar (Usuario usuario) {
 		
 		if(usuario.getId() != null) {
@@ -31,7 +35,7 @@ public class UsuarioService {
 			
 			if (a != null) {
 				
-				throw new CasaShowExistenteException("O Usuario já existe");
+				throw new UsuarioExistenteException("O Usuario já existe");
 			}
 			
 		}
@@ -39,12 +43,14 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 	
+	
+	//------------------- buscar o nome do usuario--------------------
 	public Optional<Usuario> buscar(Long id) {
 		
 		Optional<Usuario> autor = usuarioRepository.findById(id);
 		
 		if(autor.isEmpty()  ) {
-			throw new CasaShowNaoEncontradoException("O Usuario não existe");
+			throw new UsuarioNaoEncontradoException("O Usuario não existe");
 		}
 		return autor; 
 	}

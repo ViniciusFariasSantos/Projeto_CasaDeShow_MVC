@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.br.gft.gestaoShow.model.Venda;
 import com.br.gft.gestaoShow.repository.ReposiHistorico;
-import com.br.gft.gestaoShow.services.exceptions.CasaShowExistenteException;
-import com.br.gft.gestaoShow.services.exceptions.CasaShowNaoEncontradoException;
+import com.br.gft.gestaoShow.services.exceptions.VendaExistenteException;
+import com.br.gft.gestaoShow.services.exceptions.VendaNaoEncontradoException;
 
 
 @Service
@@ -18,10 +18,15 @@ public class VendaService {
 	@Autowired
 	private ReposiHistorico reposiHistorico; 
 	
+	
+	
+	//-------------- Listar todas as vendas ------------------------
 	public Iterable<Venda> listar (){
 		return  reposiHistorico.findAll(); 
 	}
 	
+	
+	//-------------- Salvar as vendas ----------------------------
 	public Venda salvar (Venda historico) {
 		
 		if(historico.getId() != null) {
@@ -32,7 +37,7 @@ public class VendaService {
 			
 			if (a != null) {
 				
-				throw new CasaShowExistenteException("O Venda já existe.");
+				throw new VendaExistenteException("A Venda já existe.");
 			}
 			
 		}
@@ -40,12 +45,13 @@ public class VendaService {
 		return reposiHistorico.save(historico);
 	}
 	
+	//--------------buscar as vendas pelo id --------------------------------
 	public Optional<Venda> buscar(Long id) {
 		
 		Optional<Venda> historico = reposiHistorico.findById(id);
 		
 		if(historico.isEmpty()  ) {
-			throw new CasaShowNaoEncontradoException("A Venda não existe");
+			throw new VendaNaoEncontradoException("A Venda não existe");
 		}
 		return historico; 
 	}

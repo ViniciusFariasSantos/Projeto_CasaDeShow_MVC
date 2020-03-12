@@ -23,6 +23,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 
 
@@ -42,6 +44,7 @@ public class Evento {
 	
 	@NotNull(message ="Error: Data  é obrigatório")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	

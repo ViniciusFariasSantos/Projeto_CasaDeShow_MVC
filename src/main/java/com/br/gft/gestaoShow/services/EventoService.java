@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.gft.gestaoShow.model.Evento;
 import com.br.gft.gestaoShow.repository.ReposiEvento;
+import com.br.gft.gestaoShow.services.exceptions.CasaShowExistenteException;
 import com.br.gft.gestaoShow.services.exceptions.EventoNaoEncontradoException;
 
 @Service
@@ -36,13 +37,30 @@ public class EventoService {
 		return livro;
 	}
 
+	
+	
+	
 	// Método Salvar, irá salvar todos Atributos do evento.
 	public Evento salvar(Evento evento) {
-		evento.setCodigoEvento(null);
-		return eventoRepository.save(evento);
+		if (evento.getCodigoEvento() != null) {
 
+			Evento a = eventoRepository.findById(evento.getCodigoEvento()).orElse(null);
+
+			if (a != null) {
+
+				throw new CasaShowExistenteException("O casa de show já existe");
+			}
+
+		}
+
+		return eventoRepository.save(evento);
 	}
 
+	
+
+	
+	
+	
 	// Método deletar, irá mapiar onde está o id, e irá deletar sua linha
 	// respectivamente.
 	public void deletar(Long codigoEvento) {

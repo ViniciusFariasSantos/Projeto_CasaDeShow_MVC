@@ -12,7 +12,6 @@ import com.br.gft.gestaoShow.model.Show;
 import com.br.gft.gestaoShow.repository.ReposiShow;
 import com.br.gft.gestaoShow.services.exceptions.CasaShowExistenteException;
 import com.br.gft.gestaoShow.services.exceptions.CasaShowNaoEncontradoException;
-import com.br.gft.gestaoShow.services.exceptions.EventoNaoEncontradoException;
 
 @Service
 public class CasaShowService {
@@ -21,13 +20,7 @@ public class CasaShowService {
 	private ReposiShow showRepository;
 
 	
-	
-	
-	
-	
-	
-	
-	
+	//Metodo Listar
 	
 	public List<Show> listar() {
 		return showRepository.findAll();
@@ -35,13 +28,7 @@ public class CasaShowService {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	//Metodo salvar.
 	
 	public Show salvar(Show show) {
 
@@ -60,10 +47,7 @@ public class CasaShowService {
 	}
 
 	
-	
-	
-	
-	
+	//Metodo buscar
 	public Optional<Show> buscar(Long id) {
 
 		Optional<Show> autor = showRepository.findById(id);
@@ -73,8 +57,6 @@ public class CasaShowService {
 		}
 		return autor;
 	}
-	
-	
 	
 	
 	
@@ -98,13 +80,13 @@ public class CasaShowService {
 
 	// Método deletar, irá mapiar onde está o id, e irá deletar sua linha
 	// respectivamente.
-	public void deletar(Long codigoEvento) {
+	public void deletar(Long codigoShow) {
 
 		try {
-			this.showRepository.deleteById(codigoEvento);
+			this.showRepository.deleteById(codigoShow);
 		} catch (EmptyResultDataAccessException e) {
 
-			throw new EventoNaoEncontradoException("O Evento não pode ser encontrado .");
+			throw new CasaShowNaoEncontradoException("O Evento não pode ser encontrado .");
 		}
 
 	}  
@@ -131,8 +113,7 @@ public class CasaShowService {
 
 	
 	
-	// ----------------Nome do Evento Crescente e decrescente
-	// -----------------------------------
+	// ----------------Nome da casa de Show Crescente e decrescente -----------------------------------
 	public List<Show> listarNomeCasaShowCres() {
 		return showRepository.findAll(Sort.by(Sort.Direction.ASC, "nomeCasaShow"));
 
